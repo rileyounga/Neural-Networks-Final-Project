@@ -1,0 +1,78 @@
+BERT:
+Total F1 Score: 0.8427339084273392
+Admiration F1 Score: 0.8024439918533606
+Amusement F1 Score: 0.8557844690966719
+Gratitude F1 Score: 0.9235209235209234
+Love F1 Score: 0.8364312267657993
+Pride F1 Score: 0.33333333333333337
+Relief F1 Score: 0.1818181818181818
+Remorse F1 Score: 0.8615384615384616
+
+GPT:
+Total F1 Score: 0.8219809147745969
+Admiration F1 Score: 0.7841584158415843
+Amusement F1 Score: 0.8317152103559872
+Gratitude F1 Score: 0.9219440353460971
+Love F1 Score: 0.8180112570356473
+Pride F1 Score: 0.56
+Relief F1 Score: 0.17777777777777776
+Remorse F1 Score: 0.8372093023255813
+
+Transformer:
+Total F1 Score: 0.8098032447359338
+Admiration F1 Score: 0.719730941704036
+Amusement F1 Score: 0.838160136286201
+Gratitude F1 Score: 0.9165446559297218
+Love F1 Score: 0.8208955223880596
+Pride F1 Score: 0.5333333333333333
+Relief F1 Score: 0.33333333333333337
+Remorse F1 Score: 0.8633093525179857
+
+Bidirectional LSTM:
+Total F1 Score: 0.7942188575361322
+Admiration F1 Score: 0.7144385026737967
+Amusement F1 Score: 0.8040540540540541
+Gratitude F1 Score: 0.9221902017291065
+Love F1 Score: 0.8068181818181818
+Pride F1 Score: 0.0
+Relief F1 Score: 0.0
+Remorse F1 Score: 0.7903225806451613
+
+FF:
+Total F1 Score: 0.7890487890487891
+Admiration F1 Score: 0.6977777777777778
+Amusement F1 Score: 0.8153310104529616
+Gratitude F1 Score: 0.9093525179856116
+Love F1 Score: 0.8015267175572519
+Pride F1 Score: 0.0
+Relief F1 Score: 0.0
+Remorse F1 Score: 0.8130081300813008
+
+
+What approaches did you try?
+    My approaches were in order, a simple FF with bow embedding, a bidirectional LSTM still with the bow embedding,
+    a hypertuned random search LSTM which dropped the bow embedding, a failed attempt at a BERT extension model, 
+    a GPT-api approach, a transformer model, and finally a functioning BERT model. 
+What approaches worked?
+    All the approaches worked to some extend other than my first attempt at the BERT model. Each new model I tried worked better
+    than the previous one except going to the transformer model from the GPT model, which decreased performance by 
+    0.02 f1_score points.
+Where did you spend the most time?
+    I spent the most time on the failed BERT model. I had to spend a lot of time figuring out the dimension mismatches,
+    the utility of the bow function (before you discussed it in class), and how to modify the HuggingFace datasets, since they
+    threw a lot of errors I wasn't used to. Furthermore, once I went back to the BERT model, I had to set up a Github codespace
+    in order to run the model, since my laptop couldn't handle optimizing the model. Additionally, waiting for the model to 
+    train took a lot of time.
+What mistakes did you make?
+    In the FF model, I set the learning rate too low. In the LSTM model, I made mistakes with dealing with the cell output of
+    the lstm layer, especially in regard to return sequence option. Because I didn't quite understand this error, I tried
+    batching the input and output of the model to better match the LSTM inputs, but that didn't work. In the hypertuned LSTM
+    I figured out that the bow function was not useful and hugely impacting the performance of the model. In addition to 
+    the mistakes mentioned already with the first BERT model, I also tried implementing a function to plot my training
+    results, but I still haven't really figured out why it didn't work. I repurposed it and tried it with the FF model as well
+    so that I could more easily run a model to test the plotting, but for some reason it never plotted anything. The GPT model
+    I just built for experience working with the api, I didn't request permission to use it for this project, so I also didn't
+    intend to use its output for submission. It took a bit to figure out how to set up the api, but I didn't make any mistakes
+    once I got it running. I directly copied the transformer model from the tutorial, so I didn't make any mistakes there.
+    And for the final BERT model, I forgot to modify the predict function with the new specified column names, so it took 
+    a bit to figure out why my predictions looked terrible. 
